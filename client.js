@@ -1,16 +1,18 @@
-//const { '135.23.222.131','50542' } = require('./constants');
+
+const net = require('net');
+const { IP, PORT } = require('./client');
 
 const connect = function() {
   const conn = net.createConnection({
-    host: '135.23.222.131',
-    port: '50542'
+    host: IP,
+    port: PORT
   });
   // interpret incoming data as text
   conn.setEncoding('utf8');
 
   conn.on('connect', () => {
     console.log("Successfully connected to game server.");
-    conn.write('Name: Priya');
+    conn.write('Name: PRI');
   });
 
   conn.on('data', (data) => {
@@ -19,4 +21,5 @@ const connect = function() {
 
   return conn;
 };
+
 module.exports = { connect };
